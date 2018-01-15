@@ -11,6 +11,7 @@ ls | grep '\.fe$'| while read -r line; do
     filename=`echo ${line} | sed 's/\.fe//'`
     # the commands we want evolver to run go in a file
     echo "bitmore:={r; g 10; V 10; u 10; V 10;};"  >> evolverinputcommands
-    echo -e "gogo1\nbitmore\nread \"stl.cmd\"\nstl >>> \"${filename}.stl\"\nq\nq"  >> evolverinputcommands
+    echo "gogo1:={ K 30; u; g 10; K 30; u; g 10; r; u; g 10; u;}" >> evolverinputcommands
+    echo -e "gogo1\nbitmore\nread \"/home/jackbinysh/surfaceevolver/fe/stl.cmd\"\nstl >>> \"${filename}.stl\"\nq\nq"  >> evolverinputcommands
     evolver -f evolverinputcommands -x -e $line
 done
